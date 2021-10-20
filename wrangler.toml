@@ -1,4 +1,4 @@
-name = ""
+name = "gbot"
 type = "javascript"
 account_id = ""
 workers_dev = true
