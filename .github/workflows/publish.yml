@@ -15,10 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
       
       - name: Build Worker
         run: |
-          ./gradlew buildWorker
+          ./gradlew buildWorker --stacktrace
           
       - name: Deploy to Cloudflare Workers with Wrangler
         uses: cloudflare/wrangler-action@1.2.0
