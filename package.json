@@ -1,12 +1,12 @@
 {
-  "name": "{{ project-name }}",
-  "version": "1.0.0",
-  "description": "Kotlin hello world for Cloudflare Workers",
+  "name": "gbot",
+  "version": "0.0.1",
+  "description": "Sampingan Android - Webhook",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "{{ authors }}",
+  "author": "iqbal@sampingan.co.id",
   "license": "MIT",
   "devDependencies": {
   }
