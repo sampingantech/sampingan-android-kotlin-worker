@@ -1,10 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+name: Wrangler Publish
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
@@ -13,26 +9,22 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
+      
+      - name: Build Worker
+        run: |
+          ./gradlew buildWorker
+          
       - name: Deploy to Cloudflare Workers with Wrangler
-        # You may pin to the exact commit or the version.
-        # uses: cloudflare/wrangler-action@21f14faa062c33c938e3f37c30d52021bed521cb
         uses: cloudflare/wrangler-action@1.2.0
         env:
-          CF_ACCOUNT_ID: {{ secrets.CF_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           # CF_ZONE_ID: {{ secrets.CF_ZONE }}
         with:
           # Your Cloudflare API Token
-          apiToken: {{ secrets.API_TOKEN }}
+          apiToken: ${{ secrets.API_TOKEN }}
